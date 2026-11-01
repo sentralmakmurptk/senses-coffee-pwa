@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f4d20">
+<meta name="description" content="SENSES Coffee Roasters - pencatatan roasting dan stok green bean.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>SENSES Coffee Roasters</title>
+<style>
+:root{color-scheme:light;--green:#1f4d20;--pale:#edf4ed}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,sans-serif;background:var(--pale)}
+.top{height:54px;display:flex;align-items:center;gap:10px;padding:6px 14px;background:var(--green);color:#fff;box-shadow:0 2px 8px #0002}
+.top img{width:40px;height:40px;border-radius:7px;object-fit:cover}.brand{font-weight:700;font-size:15px;line-height:1.2}.brand small{display:block;font-weight:400;font-size:11px;opacity:.85;margin-top:3px}
+main{height:calc(100dvh - 54px);width:100%;}iframe{border:0;width:100%;height:100%;background:#f4f7f4}
+.notice{position:absolute;left:12px;right:12px;top:66px;padding:12px 14px;background:#fff;border:1px solid #d4e4d4;border-radius:12px;box-shadow:0 4px 18px #0001;z-index:3;font-size:14px;color:#234b25;display:none}
+</style>
+</head>
+<body>
+<header class="top"><img src="icons/icon-192.png" alt="Logo SENSES"><div class="brand">SENSES Coffee Roasters<small>Roasting & Green Bean Stock</small></div></header>
+<div class="notice" id="notice">Aplikasi sedang dimuat. Pastikan koneksi internet aktif.</div>
+<main><iframe id="app" title="Aplikasi SENSES" src="https://script.google.com/macros/s/AKfycbygVBLXxABJJF3UJlKcadWzkJ-F7z7UriR0geYBioEXFF3iuKYpxg46OVOhVI6--h7oqQ/exec" allow="clipboard-read; clipboard-write"></iframe></main>
+<script>
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(()=>{})); }
+const frame=document.getElementById('app');
+const note=document.getElementById('notice'); note.style.display='block';
+frame.addEventListener('load',()=>{note.style.display='none';});
+setTimeout(()=>{if(note.style.display==='block') note.textContent='Jika aplikasi tidak muncul, periksa deployment Google Apps Script dan koneksi internet.';},12000);
+</script>
+</body></html>
